@@ -43,8 +43,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
     private List<Product> products;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
+    @OneToOne(mappedBy = "user")
     private Ranking ranking;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -10,7 +10,8 @@ public class Ranking {
     @Column(name = "POSITION")
     private int position;
 
-    @OneToOne(mappedBy = "ranking", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
