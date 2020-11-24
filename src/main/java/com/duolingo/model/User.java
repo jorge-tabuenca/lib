@@ -47,13 +47,13 @@ public class User {
     @JoinColumn(name = "USER_ID")
     private Ranking ranking;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Course> courses;
 
 
     public User() {}
 
-    public User(short id, String name, String password, int experience, int money, String avatar, String email, Language language, List<Product> products, Ranking ranking) {
+    public User(short id, String name, String password, int experience, int money, String avatar, String email, Language language, List<Product> products, Ranking ranking, List<Course> courses) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -64,6 +64,15 @@ public class User {
         this.language = language;
         this.products = products;
         this.ranking = ranking;
+        this.courses = courses;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     public short getId() {

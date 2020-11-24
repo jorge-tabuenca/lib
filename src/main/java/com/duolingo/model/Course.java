@@ -3,6 +3,8 @@ package com.duolingo.model;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "Course")
 public class Course {
 
     @Id
@@ -32,7 +34,6 @@ public class Course {
 
     // -----CONSTRUCTORES-----
     public Course(){
-
     }
 
     public Course(String name){
@@ -56,6 +57,14 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public List<Category> getCategories() {
