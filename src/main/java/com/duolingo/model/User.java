@@ -47,6 +47,10 @@ public class User {
     @JoinColumn(name = "USER_ID")
     private Ranking ranking;
 
+    @ManyToMany(mappedBy = "users")
+    private List<Course> courses;
+
+
     public User() {}
 
     public User(short id, String name, String password, int experience, int money, String avatar, String email, Language language, List<Product> products, Ranking ranking) {

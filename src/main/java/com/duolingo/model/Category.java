@@ -22,6 +22,10 @@ public class Category {
     @JoinColumn(name = "LEVEL_ID")
     private Level level;
 
+    @ManyToMany(mappedBy = "categories")
+    private List<Course> courses;
+
+
     // -----CONSTRUCTORES-----
     public Category() {
     }
