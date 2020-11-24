@@ -1,6 +1,7 @@
 package com.duolingo.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -16,14 +17,14 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Exercice> exercices;
+    private Set<Exercice> exercices;
 
     @ManyToOne()
     @JoinColumn(name = "LEVEL_ID")
     private Level level;
 
     @ManyToMany(mappedBy = "categories")
-    private List<Course> courses;
+    private Set<Course> courses;
 
 
     // -----CONSTRUCTORES-----
@@ -52,11 +53,11 @@ public class Category {
         this.id = id;
     }
 
-    public List<Exercice> getExercices() {
+    public Set<Exercice> getExercices() {
         return exercices;
     }
 
-    public void setExercices(List<Exercice> exercices) {
+    public void setExercices(Set<Exercice> exercices) {
         this.exercices = exercices;
     }
 

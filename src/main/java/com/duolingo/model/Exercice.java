@@ -8,7 +8,7 @@ public class Exercice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "EXERCISE_ID")
+    @Column(name = "ID")
     private short id;
     @Column(name = "NAME")
     private String name;
@@ -16,7 +16,7 @@ public class Exercice {
     private int status;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "EXERCISE_TYPE_ID", referencedColumnName = "id")
+    @JoinColumn(name = "TYPE_ID", referencedColumnName = "ID")
     private Exercice_Type exType;
 
     @ManyToOne()

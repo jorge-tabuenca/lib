@@ -2,6 +2,7 @@ package com.duolingo.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Course")
@@ -9,7 +10,7 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "EXERCISE_ID")
+    @Column(name = "ID")
     private short id;
 
     @Column(name = "NAME")
@@ -21,7 +22,7 @@ public class Course {
             joinColumns = { @JoinColumn(name = "Course_ID") },
             inverseJoinColumns = { @JoinColumn(name = "Category_ID") }
     )
-    private List<Category> categories;
+    private Set<Category> categories;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -29,7 +30,7 @@ public class Course {
             joinColumns = { @JoinColumn(name = "Course_ID") },
             inverseJoinColumns = { @JoinColumn(name = "User_ID") }
     )
-    private List<User> users;
+    private Set<User> users;
 
 
     // -----CONSTRUCTORES-----
@@ -59,19 +60,19 @@ public class Course {
         this.name = name;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 }

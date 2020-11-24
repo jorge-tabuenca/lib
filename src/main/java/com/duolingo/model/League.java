@@ -3,9 +3,10 @@ package com.duolingo.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Ranking")
+@Table(name = "League")
 public class League {
 
     @Id
@@ -16,13 +17,13 @@ public class League {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.LAZY, mappedBy = "league")
-    private List<Ranking> ranking;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "league")
+    private Set<Ranking> ranking;
 
     public League() {
     }
 
-    public League(short id, String name, List<Ranking> ranking) {
+    public League(short id, String name, Set<Ranking> ranking) {
         this.id = id;
         this.name = name;
         this.ranking = ranking;
@@ -44,11 +45,11 @@ public class League {
         this.name = name;
     }
 
-    public List<Ranking> getRanking() {
+    public Set<Ranking> getRanking() {
         return ranking;
     }
 
-    public void setRanking(List<Ranking> ranking) {
+    public void setRanking(Set<Ranking> ranking) {
         this.ranking = ranking;
     }
 }

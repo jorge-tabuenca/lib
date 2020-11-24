@@ -10,6 +10,7 @@ public class Exercice_Type {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private short id;
+
     @Column(name = "NAME")
     private String name;
 

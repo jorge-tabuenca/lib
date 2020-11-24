@@ -2,6 +2,7 @@ package com.duolingo.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Product")
@@ -18,13 +19,13 @@ public class Product {
     @Column(name = "PRICE")
     private int price;
 
-    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> users;
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<User> users;
 
     public Product() {
     }
 
-    public Product(short id, String name, int price, List<User> users) {
+    public Product(short id, String name, int price, Set<User> users) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -55,11 +56,11 @@ public class Product {
         this.price = price;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 }

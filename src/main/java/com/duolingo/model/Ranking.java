@@ -14,7 +14,7 @@ public class Ranking {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LEAGUE_ID", nullable = false)
     private League league;
 

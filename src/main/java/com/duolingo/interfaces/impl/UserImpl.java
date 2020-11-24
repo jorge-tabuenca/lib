@@ -10,6 +10,7 @@ import java.util.List;
 
 public class UserImpl implements IUser {
 
+    @Override
     public List<User> getAllUsers() {
 
         Transaction t = null;

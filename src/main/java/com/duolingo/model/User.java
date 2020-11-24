@@ -4,6 +4,7 @@ import com.oracle.webservices.internal.api.databinding.DatabindingMode;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "User")
@@ -32,27 +33,27 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LANGUAGE_ID", nullable = false)
     private Language language;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "USER_PRODUCT",
+            name = "SHOP_USER",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
-    private List<Product> products;
+    private Set<Product> products;
 
     @OneToOne(mappedBy = "user")
     private Ranking ranking;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Course> courses;
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Course> courses;
 
 
     public User() {}
 
-    public User(short id, String name, String password, int experience, int money, String avatar, String email, Language language, List<Product> products, Ranking ranking, List<Course> courses) {
+    public User(short id, String name, String password, int experience, int money, String avatar, String email, Language language, Set<Product> products, Ranking ranking, Set<Course> courses) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -66,11 +67,11 @@ public class User {
         this.courses = courses;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 
@@ -138,11 +139,11 @@ public class User {
         this.language = language;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 
