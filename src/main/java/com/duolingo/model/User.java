@@ -1,7 +1,6 @@
 package com.duolingo.model;
 
-import com.oracle.webservices.internal.api.databinding.DatabindingMode;
-
+//import com.oracle.webservices.internal.api.databinding.DatabindingMode;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
