@@ -45,42 +45,70 @@ public class Course {
     public Course(){
     }
 
-    public Course(String name){
-        this.name = name;
-    }
 
-    // -----GETTERSnSETTERS-----
+	public Course(short id, String name, Set<Category> categories, Set<User> users, Set<Language> languages) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.categories = categories;
+		this.users = users;
+		this.languages = languages;
+	}
 
 
-    public short getId() {
-        return id;
-    }
+	public short getId() {
+		return id;
+	}
 
-    public void setId(short id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
+	public void setId(short id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Set<User> getUsers() {
-        return users;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+
+	public Set<Language> getLanguages() {
+		return languages;
+	}
+
+
+	public void setLanguages(Set<Language> languages) {
+		this.languages = languages;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", categories=" + categories + ", users=" + users
+				+ ", languages=" + languages + "]";
+	}
 }

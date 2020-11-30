@@ -25,33 +25,48 @@ public class Language {
     public Language() {
     }
 
-    public Language(short id, String name, Set<User> users) {
-        this.id = id;
-        this.name = name;
-        this.users = users;
-    }
+	public Language(short id, String name, Set<User> users, Set<Course> courses) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.users = users;
+		this.courses = courses;
+	}
 
-    public short getId() {
-        return id;
-    }
+	public short getId() {
+		return id;
+	}
 
-    public void setId(short id) {
-        this.id = id;
-    }
+	public void setId(short id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Set<User> getUsers() {
-        return users;
-    }
+	public Set<User> getUsers() {
+		return users;
+	}
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
+	@Override
+	public String toString() {
+		return "Language [id=" + id + ", name=" + name + ", users=" + users + ", courses=" + courses + "]";
+	}
 }
