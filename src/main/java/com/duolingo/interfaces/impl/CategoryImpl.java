@@ -5,14 +5,15 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import com.duolingo.interfaces.ICourse;
-import com.duolingo.model.Course;
+
+import com.duolingo.interfaces.ICategory;
+import com.duolingo.model.Category;
 import com.duolingo.util.HibernateUtil;
 
-public class CourseImpl implements ICourse{
+public class CategoryImpl implements ICategory{
 
 	@Override
-	public List<Course> getAllCourses(String originLang, String destLang) {
+	public List<Category> getAllCategories(String courseName) {
 		
 		Transaction t = null;
 		
@@ -20,8 +21,8 @@ public class CourseImpl implements ICourse{
 
             t = session.beginTransaction();
             
-            String hql = "FROM Course C WHERE C.name= :originLang AND C.name = :destLang";
-            Query query = session.createQuery(hql).setParameter("originLang", originLang).setParameter("destLang", destLang);
+            String hql = "FROM Category C WHERE C.name= :courseName";
+            Query query = session.createQuery(hql).setParameter("courseName", courseName);
             List list = query.list();
 
             t.commit();
