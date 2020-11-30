@@ -31,6 +31,14 @@ public class Course {
             inverseJoinColumns = { @JoinColumn(name = "User_ID") }
     )
     private Set<User> users;
+    
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+    		name = "Language_Course",
+    		joinColumns = {@JoinColumn(name = "Course_ID")},
+    		inverseJoinColumns = {@JoinColumn(name = "Language_ID")}
+    )
+    private Set<Language> languages;
 
 
     // -----CONSTRUCTORES-----
