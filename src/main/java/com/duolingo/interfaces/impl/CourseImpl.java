@@ -31,4 +31,24 @@ public class CourseImpl implements ICourse{
             return null;
         }
 	}
+
+	@Override
+	public Course getCourseByLanguage(short courseId) {
+		
+		Transaction t = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            t = session.beginTransaction();
+            
+            Course course = new Course();
+            course = session.find(Course.class, courseId);
+            t.commit();
+
+            return course;
+
+        }catch (Exception e){
+            return null;
+        }
+	}
 }

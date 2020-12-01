@@ -8,5 +8,7 @@ import com.duolingo.model.Language;
 public interface ICourse {
 	
 	public List<Course> getAllCourses();
+	
+	public Course getCourseByLanguage(short courseId);
 
 }

@@ -19,7 +19,12 @@ public class Language {
     @OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.EAGER, mappedBy = "language")
     private Set<User> users;
     
-    @ManyToMany(mappedBy = "languages", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+    		name = "language_course",
+    		joinColumns = {@JoinColumn(name = "Language_ID")},
+    		inverseJoinColumns = {@JoinColumn(name = "Course_ID")}
+    )
     private Set<Course> courses;
 
     public Language() {
