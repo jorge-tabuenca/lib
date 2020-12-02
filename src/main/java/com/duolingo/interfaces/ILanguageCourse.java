@@ -7,8 +7,8 @@ import com.duolingo.model.LanguageCourse;
 
 public interface ILanguageCourse {
 	
-	public List<LanguageCourse> getAllCourses(int originLang, int destLang);
+	public List<LanguageCourse> getAllCourses(short originLang, short destLang);
 	
-	public void insertCourse(int originLang, int destLang);
+	public void insertCourse(short originLang, short destLang);
 
 }

@@ -14,7 +14,7 @@ import com.duolingo.util.HibernateUtil;
 public class LanguageCourseImpl implements ILanguageCourse{
 
 	@Override
-	public List<LanguageCourse> getAllCourses(int originLang, int destLang) {
+	public List<LanguageCourse> getAllCourses(short originLang, short destLang) {
 		
 		Transaction t = null;
 		
@@ -30,9 +30,12 @@ public class LanguageCourseImpl implements ILanguageCourse{
 			}else {
 				sql = "SELECT * FROM Language_Course WHERE Language_ID = "+originLang+ " AND Course_ID = "+destLang;
 			}            
+           
             
-            Query query =  session.createNativeQuery(sql);
-            List<LanguageCourse> list = query.list();
+            List<LanguageCourse> list = session.createNativeQuery(sql).addEntity(LanguageCourse.class).getResultList();
+            for (LanguageCourse lc : list) {
+				System.out.println("ID L: " +lc.getLanguage_ID() + " // ID C: "+ lc.getCourse_ID());
+			}
             
             // String hql = "FROM Language_Course LC WHERE LC.Language_ID= 1";
             // Query query = session.createQuery(hql).setParameter("originLang", originLang).setParameter("destLang", destLang);
@@ -48,7 +51,7 @@ public class LanguageCourseImpl implements ILanguageCourse{
 	}
 
 	@Override
-	public void insertCourse(int originLang, int destLang) {
+	public void insertCourse(short originLang, short destLang) {
 
 		Transaction t = null;
 
