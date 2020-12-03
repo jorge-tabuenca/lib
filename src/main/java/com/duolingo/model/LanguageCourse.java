@@ -11,10 +11,13 @@ import java.util.Set;
 public class LanguageCourse implements Serializable{
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private short id;
+	
 	@Column(name = "LANGUAGE_ID")
 	private short language_ID;
 	
-	@Id
 	@Column(name = "COURSE_ID")
 	private short course_ID;
 

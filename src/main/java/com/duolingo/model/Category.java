@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Entity
 @Table(name = "Category")
+@Transactional(rollbackOn = Exception.class)
 public class Category {
 
     @Id
@@ -16,14 +18,14 @@ public class Category {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
     private Set<Exercice> exercices;
 
     @ManyToOne()
     @JoinColumn(name = "LEVEL_ID")
     private Level level;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER )
     private Set<Course> courses;
 
 

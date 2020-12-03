@@ -16,10 +16,10 @@ public class Language {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.EAGER, mappedBy = "language")
+    @OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.LAZY, mappedBy = "language")
     private Set<User> users;
     
-    @ManyToMany(mappedBy = "languages", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "languages", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Course> courses;
 
     public Language() {
