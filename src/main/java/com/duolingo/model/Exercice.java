@@ -10,13 +10,15 @@ public class Exercice {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private short id;
+    
     @Column(name = "NAME")
     private String name;
+    
     @Column(name = "STATUS")
     private int status;
-
-    @OneToOne(cascade = CascadeType.ALL)
+   
     @JoinColumn(name = "TYPE_ID", referencedColumnName = "ID")
+    @OneToOne(cascade = CascadeType.ALL)
     private Exercice_Type exType;
 
     @ManyToOne()

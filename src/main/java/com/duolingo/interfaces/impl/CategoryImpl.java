@@ -8,12 +8,13 @@ import org.hibernate.query.Query;
 
 import com.duolingo.interfaces.ICategory;
 import com.duolingo.model.Category;
+import com.duolingo.model.LanguageCourse;
 import com.duolingo.util.HibernateUtil;
 
 public class CategoryImpl implements ICategory{
 
 	@Override
-	public List<Category> getAllCategories(String courseName) {
+	public List<Category> getAllCategories(int courseID) {
 		
 		Transaction t = null;
 		
@@ -21,10 +22,12 @@ public class CategoryImpl implements ICategory{
 
             t = session.beginTransaction();
             
-            String hql = "FROM Category C WHERE C.name= :courseName";
-            Query query = session.createQuery(hql).setParameter("courseName", courseName);
-            List list = query.list();
-
+            String hql = "SELECT NAME FROM Category WHERE Language_Course_ID = " + courseID;
+            //List<Category> list = session.createQuery(hql).getResultList();
+            List<Category> list = session.createNativeQuery(hql).addEntity(Category.class).getResultList();
+            System.out.println(list.size());
+            
+            
             t.commit();
 
             return list;
