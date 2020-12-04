@@ -24,11 +24,10 @@ public class LanguageCourse implements Serializable {
 		
 	}
 	
-	public LanguageCourse(short language_ID, short course_ID, List<Category> categories) {
+	public LanguageCourse(short language_ID, short course_ID) {
 		super();
 		this.language_ID = language_ID;
 		this.course_ID = course_ID;
-		this.categories = categories;
 	}
 
 	public short getLanguage_ID() {
@@ -45,14 +44,6 @@ public class LanguageCourse implements Serializable {
 
 	public void setCourse_ID(short course_ID) {
 		this.course_ID = course_ID;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
 	}
 
 	@Override

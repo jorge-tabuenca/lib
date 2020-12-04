@@ -21,8 +21,7 @@ public class Category {
     @JoinColumns({
       @JoinColumn(name="Course_ID", referencedColumnName="Course_ID", insertable=false, updatable=false),
       @JoinColumn(name="Language_ID", referencedColumnName="Language_ID", insertable=false, updatable=false)
-    })
-    
+    })  
     private LanguageCourse language_course_id; 
 
     @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -36,11 +35,10 @@ public class Category {
     public Category() {
     }
 
-	public Category(short id, String name, List<Level> level, LanguageCourse language_course_id) {
+	public Category(short id, String name, LanguageCourse language_course_id) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.level = level;
 		this.language_course_id = language_course_id;
 	}
 
@@ -67,21 +65,10 @@ public class Category {
 	public void setLanguage_course_id(LanguageCourse language_course_id) {
 		this.language_course_id = language_course_id;
 	}
-
-	public List<Level> getLevel() {
-		return level;
-	}
-
-	public void setLevel(List<Level> level) {
-		this.level = level;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", language_course_id=" + language_course_id + ", level="
 				+ level + ", exercice=" + exercice + "]";
 	}
-
-	
-	
 }

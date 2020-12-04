@@ -1,5 +1,6 @@
 package com.duolingo.interfaces.impl;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -31,5 +32,27 @@ public class CategoryImpl implements ICategory{
         }catch (Exception e){
             return null;
         }
+	}
+
+	@Override
+	public void insertCategory(int languageID, int courseID, String name) {
+		
+		Transaction t = null;
+
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+			
+			 t = session.beginTransaction();		 
+			 
+			 String query = "INSERT INTO duolingobbdd.category (NAME, Course_ID, Language_ID) VALUES ('"+name+"', '"+courseID+"', '"+languageID+"');";
+			 
+			 session.createNativeQuery(query).executeUpdate();
+			 
+			 session.update(session);
+			 
+			 t.commit();
+			 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }
