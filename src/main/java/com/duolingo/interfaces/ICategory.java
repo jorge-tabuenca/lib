@@ -10,4 +10,6 @@ public interface ICategory {
 	
 	public void insertCategory(int languageID, int courseID, String name);
 	
+	public int getCategoryID(int languageID, int courseID, int position);
+	
 }
