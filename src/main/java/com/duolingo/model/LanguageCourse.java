@@ -7,40 +7,28 @@ import java.util.List;
 
 @Entity
 @Table(name = "Language_Course")
-public class LanguageCourse implements Serializable{
+public class LanguageCourse implements Serializable {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "ID")
-	private short id;
-	
+	@Id	
 	@Column(name = "LANGUAGE_ID")
 	private short language_ID;
 
+	@Id	
 	@Column(name = "COURSE_ID")
 	private short course_ID;
 	
-	 @OneToMany(mappedBy = "language_course_id", cascade = CascadeType.ALL, orphanRemoval = true)
-	 private List<Category> categories;
+	@OneToMany(mappedBy = "language_course_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Category> categories;
 
 	public LanguageCourse() {
 		
 	}
-
-	public LanguageCourse(short id, short language_ID, short course_ID, List<Category> categories) {
+	
+	public LanguageCourse(short language_ID, short course_ID, List<Category> categories) {
 		super();
-		this.id = id;
 		this.language_ID = language_ID;
 		this.course_ID = course_ID;
 		this.categories = categories;
-	}
-
-	public short getId() {
-		return id;
-	}
-
-	public void setId(short id) {
-		this.id = id;
 	}
 
 	public short getLanguage_ID() {
@@ -69,7 +57,8 @@ public class LanguageCourse implements Serializable{
 
 	@Override
 	public String toString() {
-		return "LanguageCourse [id=" + id + ", language_ID=" + language_ID + ", course_ID=" + course_ID
+		return "LanguageCourse [language_ID=" + language_ID + ", course_ID=" + course_ID
 				+ ", categories=" + categories + "]";
 	}
+	
 }

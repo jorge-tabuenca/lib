@@ -1,5 +1,6 @@
 package com.duolingo.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -15,31 +16,30 @@ public class Category {
     
     @Column(name = "NAME")
     private String name;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Exercice> exercices;
-
-    @ManyToOne()
-    @JoinColumn(name = "LEVEL_ID")
-    private Level level;
-
-    //@ManyToMany(mappedBy = "categories")
-    //private Set<Course> courses;    
     
-    @ManyToOne()
-    @JoinColumn (name = "Language_Course_ID")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumns({
+      @JoinColumn(name="Course_ID", referencedColumnName="Course_ID", insertable=false, updatable=false),
+      @JoinColumn(name="Language_ID", referencedColumnName="Language_ID", insertable=false, updatable=false)
+    })
+    
     private LanguageCourse language_course_id; 
 
-
+    @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Level> level;
+    
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Exercice> exercice;
+    
+    
     // -----CONSTRUCTORES-----
     public Category() {
     }
 
-	public Category(short id, String name, Set<Exercice> exercices, Level level, LanguageCourse language_course_id) {
+	public Category(short id, String name, List<Level> level, LanguageCourse language_course_id) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.exercices = exercices;
 		this.level = level;
 		this.language_course_id = language_course_id;
 	}
@@ -60,22 +60,6 @@ public class Category {
 		this.name = name;
 	}
 
-	public Set<Exercice> getExercices() {
-		return exercices;
-	}
-
-	public void setExercices(Set<Exercice> exercices) {
-		this.exercices = exercices;
-	}
-
-	public Level getLevel() {
-		return level;
-	}
-
-	public void setLevel(Level level) {
-		this.level = level;
-	}
-
 	public LanguageCourse getLanguage_course_id() {
 		return language_course_id;
 	}
@@ -84,9 +68,18 @@ public class Category {
 		this.language_course_id = language_course_id;
 	}
 
+	public List<Level> getLevel() {
+		return level;
+	}
+
+	public void setLevel(List<Level> level) {
+		this.level = level;
+	}
+
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", exercices=" + exercices + ", level=" + level
-				+ ", language_course_id=" + language_course_id + "]";
+		return "Category [id=" + id + ", name=" + name + ", language_course_id=" + language_course_id + ", level="
+				+ level + ", exercice=" + exercice + "]";
 	}
+	
 }
