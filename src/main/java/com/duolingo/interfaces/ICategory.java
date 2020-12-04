@@ -6,6 +6,6 @@ import com.duolingo.model.Category;
 
 public interface ICategory {
 
-	public List<Category> getAllCategories(int courseID);
+	public List<Category> getAllCategories(int languageID, int courseID);
 	
 }

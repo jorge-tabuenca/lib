@@ -14,7 +14,7 @@ import com.duolingo.util.HibernateUtil;
 public class CategoryImpl implements ICategory{
 
 	@Override
-	public List<Category> getAllCategories(int courseID) {
+	public List<Category> getAllCategories(int languageID, int courseID) {
 		
 		Transaction t = null;
 		
@@ -22,12 +22,8 @@ public class CategoryImpl implements ICategory{
 
             t = session.beginTransaction();
             
-            String hql = "SELECT NAME FROM Category WHERE Language_Course_ID = " + courseID;
-            //List<Category> list = session.createQuery(hql).getResultList();
+            String hql = "SELECT * FROM Category WHERE Language_ID = " + languageID + " AND Course_ID = " + courseID;
             List<Category> list = session.createNativeQuery(hql).addEntity(Category.class).getResultList();
-            System.out.println(list.size());
-            
-            
             t.commit();
 
             return list;

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private short id;
     
@@ -81,5 +81,7 @@ public class Category {
 		return "Category [id=" + id + ", name=" + name + ", language_course_id=" + language_course_id + ", level="
 				+ level + ", exercice=" + exercice + "]";
 	}
+
+	
 	
 }
