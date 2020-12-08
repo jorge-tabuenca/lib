@@ -8,4 +8,6 @@ public interface ICategory {
 
 	public List<Category> getAllCategories(int languageID, int courseID);
 	
+	public int getCategoryByName(String name);
+	
 }

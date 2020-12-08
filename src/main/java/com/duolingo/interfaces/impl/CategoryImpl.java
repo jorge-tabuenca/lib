@@ -32,4 +32,24 @@ public class CategoryImpl implements ICategory{
             return null;
         }
 	}
+
+	@Override
+	public int getCategoryByName(String name) {
+		Transaction t = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            t = session.beginTransaction();
+            
+            String hql = "SELECT * FROM Category WHERE NAME = '" + name +"';";
+            
+            List<Category> list = session.createNativeQuery(hql).addEntity(Category.class).getResultList();
+            t.commit();
+
+            return list.get(0).getId();
+
+        }catch (Exception e){
+            return 0;
+        }
+	}
 }
