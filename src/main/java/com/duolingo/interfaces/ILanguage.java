@@ -7,4 +7,6 @@ public interface ILanguage {
 
 	public List<Language> getAllLanguages();
 	
+	public Language getLanguageByLanguage(short languageId);
+	
 }
