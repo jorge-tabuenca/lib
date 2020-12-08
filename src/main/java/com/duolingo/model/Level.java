@@ -15,9 +15,13 @@ public class Level {
 
     @Column(name = "TIER")
     private int tier;
+    
+    @Column(name = "NAME")
+    private String name;    
 
-    @OneToMany(mappedBy = "level", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Category> categories;
+    @ManyToOne()
+    @JoinColumn (name = "CATEGORY_ID")
+    private Category categories;
 
 
     // -----CONSTRUCTORES-----
@@ -47,11 +51,19 @@ public class Level {
         this.tier = tier;
     }
 
-    public List<Category> getCategories() {
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Category getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(Category categories) {
         this.categories = categories;
     }
 

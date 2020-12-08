@@ -18,7 +18,6 @@ public class LanguageImpl implements ILanguage{
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
 
             t = session.beginTransaction();
-            
             Language language = new Language();
             List<Language> list = session.createCriteria(language.getClass()).list();
 

@@ -16,15 +16,10 @@ public class Language {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.EAGER, mappedBy = "language")
+    @OneToMany(cascade = CascadeType.ALL, fetch =  FetchType.LAZY, mappedBy = "language")
     private Set<User> users;
     
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-    		name = "language_course",
-    		joinColumns = {@JoinColumn(name = "Language_ID")},
-    		inverseJoinColumns = {@JoinColumn(name = "Course_ID")}
-    )
+    @ManyToMany(mappedBy = "languages", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Course> courses;
 
     public Language() {
