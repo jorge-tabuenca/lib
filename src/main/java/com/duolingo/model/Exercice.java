@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Exercice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private short id;
     
@@ -59,6 +59,17 @@ public class Exercice {
         this.word2 = word5;
         this.word3 = word6;
 
+    }
+    
+    public Exercice(String name, int status, int typeExercice, String word1, String word2, String word3, String word4) {
+    	this.name = name;
+    	this.status = status;
+    	this.typeExercice = typeExercice;
+    	this.word1 = word1;
+    	this.word2 = word2;
+    	this.word3 = word3;
+    	this.word4 = word4;
+    	
     }
 
 	public short getId() {
