@@ -16,14 +16,6 @@ public class Course {
     @Column(name = "NAME")
     private String name;
 
-    //@ManyToMany(cascade = { CascadeType.ALL })
-   // @JoinTable(
-    //        name = "Course_Category",
-   //         joinColumns = { @JoinColumn(name = "Course_ID") },
-    //        inverseJoinColumns = { @JoinColumn(name = "Category_ID") }
-    //
-   // private Set<Category> categories;
-
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "Actual_Course",
@@ -32,7 +24,12 @@ public class Course {
     )
     private Set<User> users;
     
-    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+    		name = "Language_Course",
+    		joinColumns = {@JoinColumn(name = "Course_ID")},
+    		inverseJoinColumns = {@JoinColumn(name = "Language_ID")}
+    )
     private Set<Language> languages;
 
 
