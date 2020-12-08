@@ -2,11 +2,9 @@ package com.duolingo.interfaces.impl;
 
 import java.sql.ResultSet;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import com.duolingo.interfaces.ICategory;
 import com.duolingo.model.Category;
 import com.duolingo.model.LanguageCourse;
@@ -35,6 +33,24 @@ public class CategoryImpl implements ICategory{
 	}
 
 	@Override
+	public int getCategoryByName(String name) {
+		Transaction t = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            t = session.beginTransaction();
+            
+            String hql = "SELECT * FROM Category WHERE NAME = '" + name +"';";
+            
+            List<Category> list = session.createNativeQuery(hql).addEntity(Category.class).getResultList();
+            t.commit();
+
+            return list.get(0).getId();
+
+        }catch (Exception e){
+            return 0;
+        }
+	}
 	public void insertCategory(int languageID, int courseID, String name) {
 		
 		Transaction t = null;
@@ -78,5 +94,4 @@ public class CategoryImpl implements ICategory{
         }
 		
 	}
-
 }
