@@ -19,8 +19,8 @@ public class Category {
     
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumns({
-      @JoinColumn(name="Course_ID", referencedColumnName="Course_ID", insertable=false, updatable=false),
-      @JoinColumn(name="Language_ID", referencedColumnName="Language_ID", insertable=false, updatable=false)
+      @JoinColumn(name="Course_ID", referencedColumnName="Course_ID"),
+      @JoinColumn(name="Language_ID", referencedColumnName="Language_ID")
     })  
     private LanguageCourse language_course_id; 
 

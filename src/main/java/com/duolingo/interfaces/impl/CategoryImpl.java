@@ -55,4 +55,28 @@ public class CategoryImpl implements ICategory{
 			// TODO: handle exception
 		}
 	}
+	
+	public int getCategoryID(int languageID, int courseID, int position) {
+		
+		Transaction t = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            t = session.beginTransaction();
+            
+            String hql = "SELECT * FROM Category WHERE Language_ID = " + languageID + " AND Course_ID = " + courseID;
+            List<Category> list = session.createNativeQuery(hql).addEntity(Category.class).getResultList();
+
+            int categoryID = list.get(position).getId();
+            
+            t.commit();
+
+            return categoryID;
+
+        }catch (Exception e){
+            return 0;
+        }
+		
+	}
+
 }
