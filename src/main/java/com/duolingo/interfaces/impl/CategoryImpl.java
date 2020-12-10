@@ -94,4 +94,24 @@ public class CategoryImpl implements ICategory{
         }
 		
 	}
+
+	@Override
+	public Category getCategoryByID(int categoryID) {
+		Transaction t = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            t = session.beginTransaction();
+            System.out.println("Hola2 " + categoryID);
+            String hql = "SELECT * FROM Category WHERE ID = " + categoryID;
+            Category category = (Category) session.createNativeQuery(hql).addEntity(Category.class).getResultList();
+            
+            t.commit();
+
+            return category;
+
+        }catch (Exception e){
+            return null;
+        }
+	}
 }

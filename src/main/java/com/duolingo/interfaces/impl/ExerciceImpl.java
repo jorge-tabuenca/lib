@@ -10,26 +10,20 @@ import com.duolingo.util.HibernateUtil;
 public class ExerciceImpl implements IExercice{
 
 	@Override
-	public void insertExercice(String name, String WORD1, String WORD2, String WORD3, String WORD4) {
-		
-		int status = 1;
-		int typeExercice = 7;
-		
+	public void insertExercice(Exercice exercice) {
 		
 		Transaction t = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			
 			 t = session.beginTransaction();
-			 
-			 Exercice exercice = new Exercice("name", status, typeExercice, WORD1, WORD2, WORD3, WORD4);
 
 			 session.save(exercice);
 			 
 			 t.commit();
 			 
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		
 	}

@@ -13,4 +13,6 @@ public interface ICategory {
 	
 	public int getCategoryID(int languageID, int courseID, int position);
 	
+	public Category getCategoryByID(int categoryID);
+	
 }
