@@ -9,4 +9,6 @@ public interface IExercice {
 
 	public void insertExercice(Exercice exercice);
 	
+	public List<Exercice> getAllExerciceByCategoryId(int categoryID);
+	
 }
