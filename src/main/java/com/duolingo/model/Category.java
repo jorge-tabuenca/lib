@@ -27,7 +27,7 @@ public class Category {
     @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Level> level;
     
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Exercice> exercice;
     
     

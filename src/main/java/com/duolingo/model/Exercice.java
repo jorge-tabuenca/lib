@@ -10,13 +10,9 @@ public class Exercice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private short id;
-    
-    @ManyToOne()
-    @JoinColumn(name = "CATEGORY_ID")
-    private Category category;
-    
-    @Column(name = "NAME")
-    private String name;
+
+    @Column(name = "CATEGORY_ID")
+    private int category;
     
     @Column(name = "STATUS")
     private int status;
@@ -47,53 +43,25 @@ public class Exercice {
     public Exercice() {
     }
 
-    public Exercice(String name, int status, int typeExercice, String word1, String word2, String word3, String word4, String word5, String word6) {
-
-        this.name = name;
-        this.status = status;
-        this.typeExercice = typeExercice;
-        this.word1 = word1;
-        this.word2 = word2;
-        this.word3 = word3;
-        this.word1 = word4;
-        this.word2 = word5;
-        this.word3 = word6;
-
-    }
-    
-    public Exercice(String name, int status, int typeExercice, String word1, String word2, String word3, String word4) {
-    	this.name = name;
-    	this.status = status;
-    	this.typeExercice = typeExercice;
-    	this.word1 = word1;
-    	this.word2 = word2;
-    	this.word3 = word3;
-    	this.word4 = word4;
-    	
-    }
-
-	public short getId() {
-		return id;
+	public Exercice(int category, int status, int typeExercice, String word1, String word2, String word3, String word4, String word5, String word6) {
+		super();
+		this.category = category;
+		this.status = status;
+		this.typeExercice = typeExercice;
+		this.word1 = word1;
+		this.word2 = word2;
+		this.word3 = word3;
+		this.word4 = word4;
+		this.word5 = word5;
+		this.word6 = word6;
 	}
-
-	public void setId(short id) {
-		this.id = id;
-	}
-
-	public Category getCategory() {
+	
+	public int getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(int category) {
 		this.category = category;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getStatus() {
@@ -159,6 +127,4 @@ public class Exercice {
 	public void setWord6(String word6) {
 		this.word6 = word6;
 	}
-	
-	
 }
